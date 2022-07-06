@@ -1,0 +1,8 @@
+.DS_Store
+.nuxt
+.output
+assets
+node_modules
+public
+
+!.*rc.js

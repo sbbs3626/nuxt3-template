@@ -1,0 +1,10 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+#__nuxt {
+  height: inherit;
+  overflow: auto;
+}
