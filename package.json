@@ -6,6 +6,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "ns": "set PORT=5000&& set HOST=localhost&& node .output/server/index.mjs",
     "lint:js": "eslint \"**/*.{js,html,vue}\" --fix",
     "lint:css": "stylelint \"**/*.{css,less,scss,html,vue}\" --fix"
   },
