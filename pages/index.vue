@@ -4,21 +4,15 @@
  * @Author: hzf
  * @Date: 2022-07-05 17:50:36
  * @LastEditors: hzf
- * @LastEditTime: 2022-07-06 15:55:57
+ * @LastEditTime: 2022-07-25 17:36:53
 -->
 <script setup>
-const navName = '首页';
-
-definePageMeta({
-});
-useHead({
-  titleTemplate: setTitle(navName),
-});
+$store.set('navInfo', { name: '首页' });
 </script>
 
 <template>
   <div>
-    {{ navName }}
+    首页
     <img src="@img/logo.png">
   </div>
 </template>

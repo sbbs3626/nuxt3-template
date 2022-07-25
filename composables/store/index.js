@@ -4,9 +4,10 @@
  * @Author: hzf
  * @Date: 2022-04-26 16:20:42
  * @LastEditors: hzf
- * @LastEditTime: 2022-07-06 11:25:35
+ * @LastEditTime: 2022-07-25 17:28:13
  */
 const state = reactive({
+    navInfo: {},
   }),
   mutations = {
   },
@@ -25,13 +26,13 @@ Object.keys(modules).forEach(k => {
 function get(key) {
   const arr = key.split('/');
   if (arr.length == 1) {
-    return deepCopy(state[key]);
+    return $deepCopy(state[key]);
   } else {
-    return deepCopy(space[arr[0]].state[arr[1]]);
+    return $deepCopy(space[arr[0]].state[arr[1]]);
   }
 }
 function set(key, value) {
-  const arr = key.split('/'), _value = deepCopy(value);
+  const arr = key.split('/'), _value = $deepCopy(value);
   if (arr.length == 1) {
     state[key] = _value;
   } else {
@@ -39,17 +40,17 @@ function set(key, value) {
   }
 }
 function commit(name, value) {
-  const arr = name.split('/'), _value = deepCopy(value),
+  const arr = name.split('/'), _value = $deepCopy(value),
     namespace = space[arr[0]],
     result = arr.length == 1 ? mutations[name]({ state, commit }, _value)
       : namespace.mutations[arr[1]]({
         state: namespace.state,
         commit: (_name, _value) => commit(`${ arr[0] }/${ _name }`, _value),
       }, _value);
-  return deepCopy(result);
+  return $deepCopy(result);
 }
 async function dispatch(name, value) {
-  const arr = name.split('/'), _value = deepCopy(value),
+  const arr = name.split('/'), _value = $deepCopy(value),
     namespace = space[arr[0]],
     result = arr.length == 1 ? await actions[name]({ state, commit }, _value)
       : await namespace.actions[arr[1]]({
@@ -57,10 +58,10 @@ async function dispatch(name, value) {
         commit: (_name, _value) => commit(`${ arr[0] }/${ _name }`, _value),
         dispatch: async(_name, _value) => await dispatch(`${ arr[0] }/${ _name }`, _value),
       }, _value);
-  return deepCopy(result);
+  return $deepCopy(result);
 }
 
-export const store = {
+export const $store = {
   get,
   set,
   commit,

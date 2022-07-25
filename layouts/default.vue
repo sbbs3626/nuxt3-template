@@ -4,15 +4,15 @@
  * @Author: hzf
  * @Date: 2022-07-06 11:39:22
  * @LastEditors: hzf
- * @LastEditTime: 2022-07-06 16:04:31
+ * @LastEditTime: 2022-07-25 17:26:17
 -->
 <script setup>
-
+const navInfo = computed(() => $store.get('navInfo'));
 </script>
 
 <template>
   <div>
-    <Title>官网</Title>
+    <Title>{{ $setTitle('官网', navInfo.name) }}</Title>
 
     <div class="nav_wrap">
       <NuxtLink to="/">首页</NuxtLink>
